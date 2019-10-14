@@ -1,3 +1,4 @@
 ﻿  MyForm.cpp
+C:\Users\Diego\source\repos\Lab3_Diego_Morales_11321191\Lab3_Diego_Morales_1132119(1)\MyForm.h(723): warning C4717:  'Lab3DiegoMorales11321191::MyForm::CambiarPilas': recursiva para todas las rutas de acceso de control; la función provocará el desbordamiento de la pila en tiempo de ejecución
   Carta.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  Lab3_Diego_Morales_1132119(1).vcxproj -> C:\Users\Diego\source\repos\Lab3_Diego_Morales_1132119(1)\Debug\Lab3_Diego_Morales_1132119(1).exe
+  Lab3_Diego_Morales_1132119(1).vcxproj -> C:\Users\Diego\source\repos\Lab3_Diego_Morales_11321191\Debug\Lab3_Diego_Morales_1132119(1).exe

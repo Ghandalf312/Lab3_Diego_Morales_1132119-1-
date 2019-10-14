@@ -382,7 +382,7 @@ namespace Lab3DiegoMorales11321191 {
 		}
 #pragma endregion
 		Pila* pila = new Pila();
-		Pila* pila1 = new Pila();
+		Pila* pila1 = new Pila();//Creacion de pilas para mostrarlas en el Form
 		Pila* pila2 = new Pila();
 		Pila* pila3 = new Pila();
 		Pila* pila4 = new Pila();
@@ -393,14 +393,15 @@ namespace Lab3DiegoMorales11321191 {
 
 	private: System::Void BtnIniciar_Click(System::Object^ sender, System::EventArgs^ e) {
 		Random^ rand = gcnew Random();
-		int random;
+		int randGenerado;
 		int numero = 1;
 		int posicion = 0;
 		int pos = 0;
 		char color = 'R';
 		Carta* vCartas[52];
-		int vCU[52];
+		int vCU[52];//Cartas usadas
 
+		//Envio de cartas rojas a la lista
 		for (int j = 0; j < 26; j++)
 		{
 			Carta* car = new Carta;
@@ -419,7 +420,7 @@ namespace Lab3DiegoMorales11321191 {
 		}
 
 		color = 'N';
-
+		//Envio de cartas negras a la lista
 		for (int j = 26; j < 52; j++)
 		{
 			Carta* car = new Carta;
@@ -437,14 +438,14 @@ namespace Lab3DiegoMorales11321191 {
 			posicion++;
 		}
 
-		while (pila->NElementos < 52)
+		while (pila->NElementos < 52) //Envia las cartas a la pila
 		{
-			random = rand->Next(0, 52);
-			random = random % 52;
-			if (!Usadas(random, vCU))
+			randGenerado = rand->Next(0, 52);
+			randGenerado = randGenerado % 52;
+			if (!CartasUsadas(randGenerado, vCU))//Si es la negacion del return de la funcion
 			{
-				pila->Apilar(*vCartas[random]);
-				vCU[pos] = random;
+				pila->Apilar(*vCartas[randGenerado]);
+				vCU[pos] = randGenerado;
 				pos++;
 			}
 		}
@@ -453,7 +454,7 @@ namespace Lab3DiegoMorales11321191 {
 		{
 			if (pila7->NElementos < 7)
 			{
-				pila7->Apilar(pila->Desapilar());
+				pila7->Apilar(pila->Desapilar());//Apila las 7 cartas en la pila 7
 			}
 			else if (pila6->NElementos < 6)
 			{
@@ -480,15 +481,11 @@ namespace Lab3DiegoMorales11321191 {
 				pila1->Apilar(pila->Desapilar());
 			}
 		}
-		MessageBox::Show("Everything ok c:");
-		cbCantCartas->Enabled = true;
-		cbOrigen->Enabled = true;
-		cbDestino->Enabled = true;
-		moverbtn->Enabled = true;
+		MessageBox::Show("Empezamos, suerte!");
 		btnRepartirCartas->Enabled = true;
 	}
 
-	private: System::Boolean Usadas(int valor, int car[])
+	private: System::Boolean CartasUsadas(int valor, int car[])
 	{
 		 for (int i = 0; i < 52; i++)
 		 {
@@ -504,7 +501,7 @@ namespace Lab3DiegoMorales11321191 {
 		System::String^ cartaVolteada = "";
 		for (int i = 0; i < pila7->NElementos; i++)
 		{
-			if (i < (pila7->NElementos - 1))
+			if (i < (pila7->NElementos - 1))//Mostrar los numeros, concatenando, agregandole la letra, que significa el color
 			{
 				cartaVolteada += "__\n";
 			}
@@ -524,7 +521,7 @@ namespace Lab3DiegoMorales11321191 {
 			}
 		}
 
-		if (pila7->NElementos == 0)
+		if (pila7->NElementos == 0)//Si no hay nada, le asigna vacio ""
 		{
 			grupo7->Text = cartaVolteada;
 		}
@@ -725,7 +722,7 @@ namespace Lab3DiegoMorales11321191 {
 	}
 
 	private: System::Boolean ApilarCartas(Carta* cartaMenor, Carta* cartaMayor) {
-		if (cartaMenor->numero < cartaMayor->numero)
+ 		if (cartaMenor->numero < cartaMayor->numero)
 		{
 			if (cartaMenor->color != cartaMayor->color)
 			{
@@ -758,7 +755,7 @@ namespace Lab3DiegoMorales11321191 {
 					else
 					{
 						i = numCartas;
-						MessageBox::Show("No se puede realizar el movimiento,  el número debe ser menor al de la carta superior y el color de la carta debe ser diferente");
+						MessageBox::Show("No se puede realizar el movimiento, el número debe ser menor al de la carta superior y el color de la carta debe ser diferente");
 					}
 				}
 
@@ -769,7 +766,7 @@ namespace Lab3DiegoMorales11321191 {
 			}
 			else
 			{
-				MessageBox::Show("No se puede realizar el movimiento,  el número debe ser menor al de la carta superior y el color de la carta debe ser diferente");
+				MessageBox::Show("No se puede realizar el movimiento, el número debe ser menor al de la carta superior y el color de la carta debe ser diferente");
 			}
 		}
 		else
@@ -1021,7 +1018,7 @@ namespace Lab3DiegoMorales11321191 {
 	private: System::Void Moverbtn_Click_1(System::Object^ sender, System::EventArgs^ e) {//orden hay que corregirlo
 		int Cantidad = Convert::ToInt16(cbCantCartas->SelectedItem);
 		int pilaDestino = Convert::ToInt16(cbDestino->SelectedItem);
-	int pilaOrigen = Convert::ToInt16(cbOrigen->SelectedItem);
+		int pilaOrigen = Convert::ToInt16(cbOrigen->SelectedItem);
 
 		switch (pilaDestino)//Evalua la pila a la que quiere mover la carta
 		{
